@@ -133,7 +133,7 @@
           'Inglês Intermediário','Português','Jazidas','Química Analítica','F.A.I','Matemática','Física','Produção','Perfuração','Geologia','TGMIP'
         ],
         '12': [
-          'Projecto Tecnológico','Química Orgânica','OGI','Instrumentação','HSMA','Produção','Perfuração','Jazidas 2','Física','Matemática','Inglês Técnico'
+          'Projecto Tecnológico','Química Orgânica','OGI','Instrumentação','HSMA','Produção','Perfuração','Jazidas 2','Física','Matemática','Inglês Técnico','TGMIP II'
         ]
       },
 
@@ -808,6 +808,55 @@ course.summaries['12']['OGI'] = {
     {
       title: 'Resumo Final',
       text: 'A disciplina de OGI ensina como as empresas são estruturadas, geridas e planejadas. Compreender os tipos, objetivos e o modelo D.E.F.L. permite ao profissional organizar recursos, melhorar processos e aumentar a eficiência organizacional.'
+    }
+  ]
+};
+course.summaries['12']['TGMIP II'] = {
+  description: 'Disciplina que aprofunda o estudo dos sistemas de manutenção e gestão industrial, com foco no funcionamento, tipos, componentes e aplicação de bombas em processos industriais.',
+  topics: [
+    {
+      title: 'Introdução à TGMIP II',
+      text: 'A disciplina aborda a operação e manutenção de sistemas industriais, especialmente os que utilizam **bombas** para o transporte de fluidos. Estuda os princípios de funcionamento, classificação, componentes, instalação, falhas e medidas de prevenção, além das boas práticas de gestão e segurança.'
+    },
+    {
+      title: 'Conceito e Função das Bombas',
+      text: 'As bombas são **máquinas hidráulicas** utilizadas para **transferir energia** a um fluido, aumentando sua pressão ou deslocando-o de um ponto a outro. São essenciais em sistemas de transporte de petróleo, água, produtos químicos e líquidos industriais.'
+    },
+    {
+      title: 'Princípio de Funcionamento',
+      text: 'O funcionamento das bombas baseia-se na **conversão de energia mecânica em energia hidráulica**. O motor fornece energia ao eixo, que movimenta o rotor (ou êmbolo), criando diferença de pressão e forçando o deslocamento do fluido.'
+    },
+    {
+      title: 'Classificação das Bombas',
+      text: 'As bombas podem ser classificadas segundo o **princípio de operação**:\n\n1. **Bombas de Deslocamento Positivo:**\n   - Movem volumes fixos de fluido por ciclo.\n   - Tipos: pistão, êmbolo, engrenagem, palheta, diafragma.\n   - Ideais para líquidos viscosos e sistemas de alta pressão.\n\n2. **Bombas Dinâmicas:**\n   - Aumentam a energia do fluido por ação contínua do rotor.\n   - Tipos: centrífuga, axial, mista.\n   - Mais usadas em refinarias, estações de bombeamento e redes de abastecimento.'
+    },
+    {
+      title: 'Bombas Centrífugas',
+      text: 'As **bombas centrífugas** são as mais comuns na indústria. Elas convertem a energia rotacional do impulsor em energia cinética no fluido.\n\n**Partes principais:**\n- Carcaça: envolve o fluido e direciona o fluxo.\n- Rotor (impulsor): acelera o fluido.\n- Eixo: transmite o movimento do motor.\n- Selos mecânicos: evitam vazamentos.\n\n**Princípio:** ao girar, o impulsor lança o fluido para fora (força centrífuga), criando pressão e sucção na entrada.'
+    },
+    {
+      title: 'Bombas de Deslocamento Positivo',
+      text: 'Utilizam um mecanismo alternativo ou rotativo para mover o fluido. São mais precisas e adequadas para altas pressões.\n\n**Exemplos:**\n- **Bombas de Pistão:** ideais para sistemas hidráulicos.\n- **Bombas de Engrenagem:** usadas em óleo lubrificante e combustíveis.\n- **Bombas de Palheta:** para líquidos de baixa viscosidade.\n- **Bombas de Diafragma:** resistentes a produtos químicos corrosivos.'
+    },
+    {
+      title: 'Parâmetros de Operação',
+      text: 'Os principais parâmetros que definem o desempenho de uma bomba são:\n- **Vazão (Q):** volume de fluido bombeado por unidade de tempo.\n- **Altura manométrica (H):** energia por unidade de peso necessária para elevar o fluido.\n- **Potência (P):** energia fornecida ao fluido (P = ρ·g·Q·H / η).\n- **Rendimento (η):** relação entre potência hidráulica e potência consumida.\n- **NPSH:** altura líquida positiva de sucção — medida da energia disponível para evitar cavitação.'
+    },
+    {
+      title: 'Cavitação e Problemas Comuns',
+      text: 'A **cavitação** ocorre quando a pressão na entrada da bomba cai abaixo da pressão de vapor do fluido, formando bolhas que implodem e danificam o rotor.\n\n**Principais causas:**\n- Sucção incorreta.\n- Altura de aspiração excessiva.\n- Obstruções ou entrada de ar.\n\n**Outros problemas:** vibrações, aquecimento, desgaste dos selos, perda de vazão e ruídos anormais.'
+    },
+    {
+      title: 'Manutenção de Bombas',
+      text: 'A manutenção preventiva e corretiva é essencial para garantir a eficiência e prolongar a vida útil.\n\n**Tipos:**\n- **Preventiva:** inspeção regular, lubrificação e alinhamento.\n- **Preditiva:** monitoramento de vibrações e temperatura.\n- **Corretiva:** substituição de peças danificadas.\n\nBoas práticas: manter registros, verificar rolamentos, observar vazamentos e evitar funcionamento a seco.'
+    },
+    {
+      title: 'Gestão e Segurança Operacional',
+      text: 'A gestão da manutenção deve seguir planos e normas de segurança. Inclui:\n- Planeamento das intervenções.\n- Treinamento dos operadores.\n- Monitoramento contínuo de desempenho.\n- Cumprimento de normas técnicas (API, ISO, ABNT).\n\nO uso de **instrumentação** e **automação** permite detectar falhas precocemente, reduzindo paradas e custos.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'TGMIP II ensina o funcionamento e controle das bombas industriais, essenciais para o transporte de fluidos nos processos de produção e refino. Compreender sua operação, parâmetros e manutenção é vital para garantir eficiência, segurança e confiabilidade no ambiente industrial.'
     }
   ]
 };
