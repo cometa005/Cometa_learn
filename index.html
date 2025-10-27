@@ -1,0 +1,1039 @@
+<!doctype html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PPP — Resumos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config for fonts and forms
+    tailwind.config = {
+      darkMode: 'class', // Enable dark mode via class
+      theme: {
+        extend: {
+          fontFamily: {
+            // Using 'serif' for headings and 'sans' for body, as defined
+            heading: ['Merriweather', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif']
+          },
+          // Customizing colors for a more professional palette
+          colors: {
+            primary: {
+              DEFAULT: '#4f46e5', // Indigo-600
+              light: '#6366f1',  // Indigo-500
+              dark: '#4338ca',   // Indigo-700
+            },
+            surface: {
+              light: '#ffffff',
+              dark: '#1e293b', // slate-800
+              bg: '#f8fafc', // slate-50
+              bg_dark: '#0f172a', // slate-900
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* little tactile touches to make it feel like study material */
+    .paper { 
+        /* Slightly more subtle paper lines in light mode */
+        background-image: linear-gradient(transparent 0 90%, rgba(0,0,0,0.03) 90%); 
+        background-size: 100% 1.5em; /* Adjust line spacing */
+    }
+    .dark .paper {
+        /* Remove paper effect or make it very subtle in dark mode */
+        background-image: none; 
+    }
+    .scrollbar-thin::-webkit-scrollbar { height:8px; width:8px }
+    .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius:8px }
+    .dark .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); }
+  </style>
+</head>
+<body class="bg-surface-bg text-slate-900 dark:bg-surface-bg_dark dark:text-slate-100 font-body min-h-screen transition-colors duration-300">
+  <div id="app" class="max-w-6xl mx-auto p-6 md:p-8">
+    <header class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+      <div class="flex-shrink-0">
+        <h1 class="text-3xl font-heading text-primary-dark dark:text-primary-light">PPP — Resumos</h1>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Curso único com níveis 10º / 11º / 12º — resumos organizados por disciplina e tema.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+        <div class="relative flex-grow">
+          <input id="search" placeholder="Pesquisar temas, disciplinas..." class="px-4 py-2 pl-10 rounded-xl shadow-sm border border-slate-300 dark:border-slate-600 w-full focus:outline-none focus:ring-2 focus:ring-primary dark:bg-surface-dark dark:text-slate-100" />
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <button id="clearSearch" title="Limpar" class="absolute right-1 top-1/2 -translate-y-1/2 px-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">✖</button>
+        </div>
+
+        <button id="themeToggle" class="p-3 rounded-xl border border-slate-300 shadow-sm transition-colors dark:bg-surface-dark dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700">🌙</button>
+      </div>
+    </header>
+
+<main class="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6">
+  <section class="md:col-span-4">
+    <div class="paper p-6 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 bg-surface-light dark:bg-surface-dark">
+      <h2 class="text-2xl font-heading mb-3 border-b pb-2 border-slate-100 dark:border-slate-700">📚 Curso: PPP</h2>
+      <p class="text-sm text-slate-700 dark:text-slate-400 mb-4">Perfuração e Produção de Petróleo — selecione um nível para ver as disciplinas.</p>
+      <div class="flex gap-4">
+        <button class="open-level flex-1 px-4 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/30" data-level="10">10º</button>
+        <button class="open-level flex-1 px-4 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/30" data-level="11">11º</button>
+        <button class="open-level flex-1 px-4 py-3 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors shadow-lg shadow-primary/30" data-level="12">12º</button>
+      </div>
+    </div>
+
+    <div class="mt-6 paper p-6 rounded-2xl shadow-md border border-slate-200 dark:border-slate-700 bg-surface-light dark:bg-surface-dark">
+      <h3 class="font-heading text-lg text-primary-dark dark:text-primary-light">💡 Como usar</h3>
+      <ul class="text-sm mt-3 space-y-2 text-slate-700 dark:text-slate-400">
+        <li class="flex items-start"><span class="font-bold text-primary-dark dark:text-primary-light mr-2">1.</span> Clique em um nível (acima).</li>
+        <li class="flex items-start"><span class="font-bold text-primary-dark dark:text-primary-light mr-2">2.</span> Escolha uma disciplina no menu horizontal abaixo.</li>
+        <li class="flex items-start"><span class="font-bold text-primary-dark dark:text-primary-light mr-2">3.</span> Veja os temas e o resumo à direita.</li>
+        <li class="flex items-start"><span class="font-bold text-primary-dark dark:text-primary-light mr-2">4.</span> Use a pesquisa (Ctrl+K) para achar temas específicos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="md:col-span-8">
+    <div id="levelArea" class="paper p-5 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 bg-surface-light dark:bg-surface-dark">
+      <h3 id="levelTitle" class="font-heading text-xl text-primary-dark dark:text-primary-light">Nível: 10º</h3>
+      <div id="disciplines" class="mt-4 flex gap-3 overflow-x-auto scrollbar-thin py-2">
+        </div>
+    </div>
+
+    <div id="content" class="mt-6 paper p-6 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 bg-surface-light dark:bg-surface-dark min-h-[350px]">
+      <h3 id="disciplineTitle" class="font-heading text-2xl text-primary-dark dark:text-primary-light border-b pb-2 mb-4 border-slate-100 dark:border-slate-700">Escolha uma disciplina</h3>
+      <div id="topicsArea" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
+        </div>
+    </div>
+  </section>
+</main>
+
+<div id="searchResults" class="fixed inset-0 z-50 flex items-start justify-center p-8 pointer-events-none transition-opacity duration-300 opacity-0">
+  <div class="pointer-events-auto w-full max-w-3xl bg-surface-light dark:bg-surface-dark rounded-2xl shadow-2xl border border-slate-300 dark:border-slate-700 overflow-hidden" id="searchBox">
+    <div class="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-700">
+      <strong class="text-lg">🔍 Resultados da pesquisa</strong>
+      <button id="closeSearchResults" class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors">Fechar</button>
+    </div>
+    <div id="searchContent" class="p-4 max-h-96 overflow-auto divide-y divide-slate-100 dark:divide-slate-700"></div>
+  </div>
+</div>
+
+<footer class="mt-12 text-center text-sm text-slate-500 dark:text-slate-600">Protótipo — criado para organizar resumos do curso PPP. Desenvolvido por Cometa & Gepeto.</footer>
+
+  </div>  <script>
+    // === Dados do curso (MANTIDOS IGUAIS) ===
+    const course = {
+      name: 'PPP',
+      levels: {
+        '10': [
+          'Desenho Técnico','Matemática','Física','Informática','Química','Língua Portuguesa','Língua Inglesa','F.A.I','PPHC','Geologia','Eletrotécnica'
+        ],
+        '11': [
+          'Inglês Intermediário','Português','Jazidas','Química Analítica','F.A.I','Matemática','Física','Produção','Perfuração','Geologia','TGMIP'
+        ],
+        '12': [
+          'Projecto Tecnológico','Química Orgânica','OGI','Instrumentação','HSMA','Produção','Perfuração','Jazidas 2','Física','Matemática','Inglês Técnico'
+        ]
+      },
+
+      // estrutura de resumos (inicialmente com placeholders)
+      summaries: {
+        // chave: nivel -> disciplina -> temas
+        '10': {
+          'Desenho Técnico': {
+            description: 'Resumo detalhado de Desenho Técnico (placeholder).',
+            topics: [
+              { title: 'Projeções Ortogonais', text: 'Projeções ortogonais são a base para a representação de objetos 3D em um plano 2D, utilizando vistas principais: frontal, superior e lateral.' },
+              { title: 'Cortes e Seções', text: 'Cortes mostram a geometria interna complexa do objeto, seccionando-o para revelar detalhes não visíveis nas projeções. As seções representam apenas a área cortada.' }
+            ]
+          },
+          'Matemática': { description: 'Resumo de Matemática (10º).', topics: [
+            { title: 'Funções Quadráticas', text: 'Estudo da função $f(x) = ax^2 + bx + c$, cálculo do vértice e raízes.'},
+            { title: 'Trigonometria Básica', text: 'Relações de seno, cosseno e tangente em triângulos retângulos.'}
+          ] },
+          'Física': { description: 'Resumo de Física (10º).', topics: [] },
+          'Informática': { description: 'Resumo de Informática (10º).', topics: [] },
+          'Química': { description: 'Resumo de Química (10º).', topics: [] },
+          'Língua Portuguesa': { description: 'Resumo de Português (10º).', topics: [] },
+          'Língua Inglesa': { description: 'Resumo de Inglês (10º).', topics: [] },
+          'F.A.I': { description: 'Resumo F.A.I (10º).', topics: [] },
+          'PPHC': { description: 'Resumo PPHC (10º).', topics: [] },
+          'Geologia': { description: 'Resumo Geologia (10º).', topics: [] },
+          'Eletrotécnica': { description: 'Resumo Eletrotécnica (10º).', topics: [] }
+        },
+        '11': {},
+        '12': {}
+      }
+    };
+course.summaries['12']['Inglês Técnico'] = {
+  description: 'Based on the book "Oil and Gas – Oxford English for Careers" by Jon Naunton and Alison Pohl. This course develops professional English skills for the oil and gas industry, including vocabulary, grammar, and communication related to exploration, drilling, production, refining, safety, and environmental protection.',
+  topics: [
+    {
+      title: 'Unit 1 – The Oil and Gas Industry',
+      text: `Introduces the structure of the industry: 
+      - **Upstream**: Exploration and production of crude oil and natural gas. Includes locating reservoirs, drilling wells, and extracting hydrocarbons.  
+      - **Midstream**: Transportation and storage of crude oil and gas (pipelines, tankers, terminals).  
+      - **Downstream**: Refining crude oil, processing natural gas, and distributing products like gasoline, diesel, and LPG.  
+      **Key Vocabulary:** exploration, reservoir, refinery, offshore, onshore, crude oil, pipeline, wellhead, rig.  
+      **Communication Focus:** Introducing yourself and your job.  
+      **Grammar:** Present Simple for routines.`
+    },
+    {
+      title: 'Unit 2 – Exploration',
+      text: `Explains how geologists and geophysicists locate oil and gas.  
+      - **Seismic surveys:** Using sound waves to detect rock formations underground.  
+      - **Drilling exploration wells:** To confirm hydrocarbons.  
+      - **Data interpretation:** Reading seismic lines and logs.  
+      **Key Vocabulary:** seismic survey, interpretation, core sample, sedimentary rock, basin, hydrocarbon trap.  
+      **Grammar:** Passive voice.`
+    },
+    {
+      title: 'Unit 3 – Drilling',
+      text: `Covers drilling operations and equipment.  
+      **Rig components:** derrick, drill bit, mud pumps, rotary table, drill pipe.  
+      **Drilling mud:** Cools the bit, carries cuttings, maintains pressure.  
+      **Types of wells:** onshore/offshore, vertical/directional.  
+      **Personnel:** driller, toolpusher, roughneck, mud engineer.  
+      **Safety:** Pressure control and well monitoring.`
+    },
+    {
+      title: 'Unit 4 – Production',
+      text: `Focuses on oil and gas extraction and treatment.  
+      **Wellhead (Christmas Tree):** Controls flow through valves.  
+      **Separation:** Gas, oil, and water separation (three-phase).  
+      **Processing:** Dehydration, sweetening, stabilization.  
+      **Storage:** Tanks, manifolds, pipelines.  
+      **Grammar:** Modals for obligation (must, have to, should).`
+    },
+    {
+      title: 'Unit 5 – Transport and Storage',
+      text: `Explains hydrocarbon transportation.  
+      **Pipelines:** Main method (onshore/offshore).  
+      **Tankers:** Long-distance shipping.  
+      **LNG:** Liquefying gas for transport.  
+      **Storage:** Tanks, terminals, underground facilities.  
+      **Safety:** Leak detection and corrosion control.`
+    },
+    {
+      title: 'Unit 6 – Refining',
+      text: `Describes refining of crude oil.  
+      **Distillation:** Separating hydrocarbons by boiling point.  
+      **Conversion:** Cracking, reforming, alkylation.  
+      **Blending:** Creating fuel mixtures.  
+      **By-products:** Asphalt, lubricants, petrochemicals.  
+      **Grammar:** Sequencing connectors (first, next, then, finally).`
+    },
+    {
+      title: 'Unit 7 – Petrochemicals',
+      text: `Explores chemical derivatives of oil and gas.  
+      **Products:** plastics, fertilizers, detergents, synthetic fibers.  
+      **Processes:** Polymerization, synthesis.  
+      **Safety:** Handling and contamination prevention.  
+      **Vocabulary:** polymer, monomer, ethylene, propylene, catalyst.`
+    },
+    {
+      title: 'Unit 8 – Health, Safety and Environment (HSE)',
+      text: `Focuses on workplace safety and sustainability.  
+      **Principles:** hazard identification, risk assessment, control measures.  
+      **PPE:** helmets, gloves, boots.  
+      **Environment:** waste management, pollution control.  
+      **Incident reporting:** accidents and near-misses.  
+      **Grammar:** Imperatives for safety (Wear your helmet!).`
+    },
+    {
+      title: 'Unit 9 – Careers in Oil and Gas',
+      text: `Covers professional roles and soft skills.  
+      **Upstream jobs:** driller, geologist, production engineer.  
+      **Downstream jobs:** refinery operator, chemical engineer.  
+      **Soft skills:** teamwork, communication, problem-solving.  
+      **Vocabulary:** CV, shift work, offshore rotation, internship.`
+    },
+    {
+      title: 'Unit 10 – The Future of Energy',
+      text: `Discusses innovation and sustainability.  
+      **Renewables:** solar, wind, geothermal.  
+      **Carbon Capture (CCS):** storing CO₂ underground.  
+      **Digitalization:** automation, smart monitoring, AI.  
+      **Energy transition:** balance between fossil and green energy.  
+      **Vocabulary:** renewable, carbon footprint, smart grid.`
+    },
+    {
+      title: 'Final Note',
+      text: `The book blends technical vocabulary with real-world communication. It prepares learners for reading manuals, safety documents, and reports used in oil and gas operations.`
+    }
+  ]
+};
+course.summaries['12']['Produção'] = {
+  description: 'Disciplina voltada ao estudo dos sistemas de produção de petróleo e gás natural, com foco nos equipamentos de superfície, controle de fluxo, separação e segurança operacional. Aborda os principais componentes: cabeça de poço, árvore de natal, GOSP, manifolds e revestimentos.',
+  topics: [
+    {
+      title: 'Introdução à Produção de Petróleo',
+      text: 'A produção é a fase que sucede a perfuração e completa o ciclo do poço, permitindo a extração controlada do petróleo e do gás. O objetivo é conduzir os fluidos do reservatório até as unidades de tratamento e exportação com segurança, eficiência e sustentabilidade.'
+    },
+    {
+      title: 'Cabeça de Poço',
+      text: 'É o conjunto de equipamentos metálicos instalados na superfície do poço, cuja função é sustentar as colunas de revestimento, vedar pressões internas e servir como base para a árvore de natal. Possui conexões de segurança, válvulas de bloqueio e pontos de medição de pressão.'
+    },
+    {
+      title: 'Árvore de Natal e Suas Válvulas',
+      text: 'A árvore de natal é um conjunto de válvulas, flanges e conexões montado sobre a cabeça de poço. Sua função principal é controlar a produção e permitir o fechamento rápido do poço em caso de emergência.\n\nPrincipais válvulas:\n- **Válvula Mestra Inferior:** controla o fluxo principal diretamente no tubo de produção.\n- **Válvula Mestra Superior:** permite o fechamento adicional de segurança acima da válvula inferior.\n- **Válvula de Asa (Wing Valve):** regula a passagem de fluido lateral, geralmente conectada à linha de produção.\n- **Válvula Choke:** regula a vazão e controla a pressão, evitando erosão e instabilidade.\n- **Válvula de Segurança (Swab Valve):** usada em intervenções e medições no poço.'
+    },
+    {
+      title: 'Sistema de Separação – GOSP',
+      text: 'O Gas–Oil Separation Plant (GOSP) é responsável por separar os fluidos produzidos em três fases: óleo, gás e água. Os separadores operam em diferentes níveis de pressão (alta, média e baixa), removendo impurezas e estabilizando o petróleo para armazenamento e transporte.'
+    },
+    {
+      title: 'Manifolds',
+      text: 'São conjuntos de tubulações e válvulas que coletam e distribuem o fluxo proveniente de vários poços. Permitem direcionar o fluido para as linhas de teste, separadores ou exportação, além de isolar poços individualmente para manutenção ou controle de pressão.'
+    },
+    {
+      title: 'Revestimento (Casing)',
+      text: 'O revestimento é o tubo metálico instalado nas paredes do poço para proteger as formações geológicas, evitar colapsos e isolar zonas de pressão. Existem quatro tipos principais:\n- **Revestimento Condutor:** colocado na parte inicial do poço, evita erosão superficial e dá suporte à cabeça do poço.\n- **Revestimento de Superfície:** isola as formações de água doce e fornece estabilidade às camadas superiores.\n- **Revestimento Intermediário:** usado em poços profundos para controlar zonas de alta pressão e temperatura.\n- **Revestimento de Produção:** permite o fluxo dos hidrocarbonetos e protege o poço durante a vida produtiva.'
+    },
+    {
+      title: 'Operação e Segurança',
+      text: 'Durante a produção, o controle de pressão, temperatura e vazão é essencial. Sistemas automáticos de alívio de pressão, válvulas de segurança e sensores são usados para evitar acidentes. A manutenção preventiva garante a integridade dos equipamentos e a continuidade da produção.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A disciplina de Produção integra conhecimentos de engenharia, segurança e operação. Compreender o funcionamento da cabeça de poço, árvore de natal, GOSP, manifolds e tipos de revestimento é essencial para o controle eficiente e seguro da extração de petróleo.'
+    }
+  ]
+};
+course.summaries['12']['Perfuração'] = {
+  description: 'Disciplina que aborda o processo de perfuração de poços de petróleo e gás, explorando os sistemas mecânicos e hidráulicos da sonda, os parâmetros operacionais e as tecnologias de medição e controle. Envolve conhecimentos de mecânica, hidráulica, segurança e geologia aplicada.',
+  topics: [
+    {
+      title: 'Introdução à Perfuração de Poços',
+      text: 'A perfuração consiste em perfurar formações rochosas para atingir reservatórios de petróleo e gás. Pode ser realizada em ambientes terrestres (onshore) ou marítimos (offshore), utilizando sondas equipadas com sistemas de rotação, circulação, potência, controle e segurança. O objetivo é criar um poço seguro, vertical ou direcional, até o alvo geológico planejado.'
+    },
+    {
+      title: 'Sistemas de Perfuração',
+      text: 'Os principais sistemas da sonda são:\n\n- **Sistema de Rotação:** Gira a broca para cortar a rocha.\n- **Sistema de Circulação:** Bombeia o fluido (lama) para resfriar a broca, remover cascalhos e controlar a pressão.\n- **Sistema de Elevação:** Move verticalmente a coluna de perfuração.\n- **Sistema de Potência:** Fornece energia aos equipamentos.\n- **Sistema de Controle:** Monitora parâmetros como torque, WOB, pressão e vazão.\n\nEsses sistemas trabalham de forma integrada, garantindo avanço controlado e seguro do poço.'
+    },
+    {
+      title: 'Parâmetros de Perfuração',
+      text: 'Os principais parâmetros são:\n\n- **WOB (Weight on Bit):** Peso aplicado sobre a broca; influencia a taxa de penetração (ROP).\n- **RPM (Rotations per Minute):** Velocidade de rotação.\n- **Torque:** Resistência à rotação da coluna.\n- **ROP (Rate of Penetration):** Velocidade de avanço do poço.\n- **Pressão da Lama:** Controla pressões de formação e evita blowouts.\n\nO controle preciso desses parâmetros é essencial para eficiência e segurança operacional.'
+    },
+    {
+      title: 'BHA – Bottom Hole Assembly',
+      text: '**BHA (Bottom Hole Assembly)** é o conjunto de componentes instalados na parte inferior da coluna de perfuração, logo acima da broca. Sua função é transmitir peso, direcionar o poço e estabilizar a perfuração.\n\n**Principais componentes:**\n- Broca de perfuração (bit);\n- Colares de perfuração (drill collars);\n- Estabilizadores;\n- Motores de fundo (mud motors);\n- Sensores MWD/LWD integrados.\n\n**Funções:**\n- Controlar a trajetória (vertical, direcional ou horizontal);\n- Garantir estabilidade e evitar vibrações excessivas;\n- Transmitir peso adequado à broca;\n- Permitir medições em tempo real.\n\nA configuração do BHA depende do tipo de poço, da rocha e do objetivo da perfuração.'
+    },
+    {
+      title: 'HBA – Hydraulic Balance Analysis',
+      text: '**HBA (Hydraulic Balance Analysis)** é a análise do equilíbrio hidráulico no poço. Ela avalia as pressões geradas pelo fluido de perfuração para garantir segurança e eficiência.\n\n**Objetivos:**\n- Evitar influxos (kicks) e fraturas na formação;\n- Garantir limpeza eficiente do poço;\n- Otimizar a taxa de penetração e a circulação da lama.\n\n**Principais fatores analisados:**\n- Densidade e viscosidade do fluido;\n- Vazão da bomba e perdas de carga;\n- Pressão anular e pressão na broca;\n- Altura da coluna de lama.\n\nO HBA permite calcular a **pressão hidrostática ideal**, mantendo o poço estável e evitando falhas operacionais.'
+    },
+    {
+      title: 'Sistemas de Medição – LWD, MWD e PWD',
+      text: '**LWD (Logging While Drilling):** Mede propriedades das formações (densidade, resistividade, porosidade) durante a perfuração.\n\n**MWD (Measurement While Drilling):** Mede parâmetros da sonda, como inclinação, direção, temperatura e pressão, enviando dados em tempo real.\n\n**PWD (Pressure While Drilling):** Monitora a pressão do poço durante a perfuração, auxiliando no controle de influxos e perdas.\n\nEsses sistemas aumentam a segurança, precisão e eficiência da operação.'
+    },
+    {
+      title: 'Empresas Petrolíferas e de Serviços',
+      text: 'A perfuração envolve tanto **empresas operadoras** (responsáveis pelo poço) quanto **empresas de serviço** (que fornecem tecnologia e equipamentos).\n\n**Operadoras:** ExxonMobil, BP, TotalEnergies, Chevron, Petrobras, ENI.\n**Serviços:** Schlumberger, Halliburton, Baker Hughes, Weatherford.\n\nCada uma desempenha um papel fundamental no avanço tecnológico e na execução das operações de perfuração.'
+    },
+    {
+      title: 'Segurança e Controle Operacional',
+      text: 'O controle de pressão é vital. O **BOP (Blowout Preventer)** é o equipamento de segurança que veda o poço em emergências, prevenindo erupções (blowouts).\n\nO uso correto do fluido de perfuração, aliado à análise **HBA** e aos sensores **PWD**, forma o sistema primário de segurança. Treinamentos, rotinas de monitoramento e redundância de barreiras completam a proteção do poço e da equipe.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A perfuração é uma atividade complexa que exige equilíbrio entre força mecânica, controle hidráulico e precisão tecnológica. Entender os sistemas, interpretar dados LWD/MWD/PWD, ajustar o BHA e dominar a análise HBA são competências essenciais para qualquer técnico ou engenheiro de perfuração.'
+    }
+  ]
+};
+course.summaries['12']['Jazidas 2'] = {
+  description: 'Disciplina que aprofunda o estudo das jazidas de petróleo e gás natural, focando na interpretação de dados geofísicos e petrofísicos, análise de diagrafias, sísmica e uso de softwares de modelagem como o Petrel. O objetivo é compreender o comportamento e a caracterização dos reservatórios subterrâneos.',
+  topics: [
+    {
+      title: 'Introdução às Jazidas de Petróleo e Gás',
+      text: 'Jazidas são formações geológicas onde o petróleo e o gás se acumulam após migrarem das rochas geradoras para rochas reservatório. O estudo das jazidas envolve a identificação, análise e modelagem dessas estruturas para determinar seu potencial produtivo e o melhor método de exploração.'
+    },
+    {
+      title: 'Diagrafias (Well Logs)',
+      text: '**Diagrafias** são registros obtidos em poços para identificar propriedades físicas das formações atravessadas. Elas ajudam a determinar litologia, porosidade, saturação de fluidos e permeabilidade.\n\n**Principais tipos:**\n- **SP (Potencial Espontâneo):** identifica contatos entre rochas permeáveis e impermeáveis.\n- **GR (Raios Gama):** mede a radioatividade natural, diferenciando xistos de arenitos.\n- **Resistividade:** indica a presença de fluidos (água, óleo, gás).\n- **Densidade e Neutrão:** determinam porosidade.\n- **Sônico:** mede o tempo de propagação das ondas sonoras na rocha, útil para cálculos sísmicos e de porosidade.\n\nAs diagrafias são essenciais para **caracterização petrofísica** e definição de zonas produtoras.'
+    },
+    {
+      title: 'Dados Sísmicos e Aquisição',
+      text: 'A **sísmica** é o principal método de prospecção indireta de petróleo. Baseia-se na propagação de ondas elásticas na Terra e na análise de seus reflexos.\n\n**Etapas da aquisição sísmica:**\n1. **Geração de ondas:** feita por vibroseis (em terra) ou air guns (no mar).\n2. **Recepção:** sensores (geofones ou hidrofones) captam os sinais refletidos.\n3. **Registro e Processamento:** os dados são convertidos em seções sísmicas, revelando estruturas do subsolo.\n\nA interpretação sísmica permite localizar armadilhas estruturais e estratigráficas, identificar falhas e dobramentos, e correlacionar com dados de poços.'
+    },
+    {
+      title: 'Interpretação Sísmica e Petrofísica',
+      text: 'A integração entre **dados sísmicos** e **diagrafias** permite definir com precisão a geometria e a qualidade das jazidas.\n\nO intérprete utiliza perfis de poço (well logs) e linhas sísmicas para correlacionar formações, identificar contatos de fluidos e delimitar reservatórios. Essa análise é base para a modelagem geológica e simulação de reservatórios.'
+    },
+    {
+      title: 'Software Petrel – Introdução',
+      text: '**Petrel** é um software desenvolvido pela Schlumberger usado para modelagem e interpretação geológica e geofísica.\n\nPermite integrar dados sísmicos, perfis de poços e mapas estruturais para criar modelos 3D realistas de reservatórios. É amplamente utilizado em empresas de exploração e produção.'
+    },
+    {
+  title: 'Petrel — Guia Detalhado',
+  text: `Petrel (Schlumberger) é uma plataforma integrada para interpretação sísmica, correlação de poços, modelagem geológica e construção de modelos de reservatório 3D. A sua força está na integração de dados (sísmica, poço, geologia, petrofísica) e na cadeia completa que vai da interpretação até a exportação para simulação de fluxo.
+
+1) FINALIDADE E MÓDULOS PRINCIPAIS
+- Integração de dados: organiza e armazena todos os datasets do projeto (SEG-Y, LAS, mapas, shapefiles).  
+- Sísmica: visualização 2D/3D, picking de horizontes, interpretação de falhas, atributos sísmicos.  
+- Poços: importação e calibração de LAS, curvas de diagrama, controle de zonas.  
+- Geologia/Modelagem Estrutural: construção de superfícies, horizons, fault framework e blocagem.  
+- Modelagem de Propriedades: porosidade, permeabilidade, saturação; técnicas de kriging, simuladores geostáticos e objetos de facies.  
+- Fluxo/Reservatório: prepara modelos para simuladores (Eclipse, CMG) e exporta os dados necessários.
+
+2) TIPOS DE DADOS DE ENTRADA
+- **SEG-Y:** dados sísmicos (2D/3D). Importante validar endianess, number format (IBM/IEEE), e headers.  
+- **LAS (Well Log ASCII):** diagrafias de poços (GR, RHOB, NPHI, resistividade, sonics). Verificar as unidades e as curvas duplicadas.  
+- **ASCII / CSV:** tabelas, tops, perfis de produção.  
+- **SEGY/RESP/GRID:** dados auxiliares (velocidade, grids).  
+- **Shapefiles / Mapas:** limites de blocos, infraestruturas, batimetria.  
+
+3) PRIMEIROS PASSOS NO PROJETO
+- Criar novo projeto e definir **sistema de coordenadas** (crítico: erros de coord. invalidam toda a integração).  
+- Importar dados brutos (SEG-Y, LAS) numa área organizada (folders/projects).  
+- Rodar **QC** dos dados: inspecionar traces sísmicos, checar curvas LAS, identificar gaps e offsets.
+
+4) INTERPRETAÇÃO SÍSMICA
+- Carregar volumes SEG-Y em 3D viewer; ajustar gain e filtros para visualização.  
+- Fazer **picking de horizontes**: usar snapping e amplitude peak/zero para consistência.  
+- Interpretar **falhas** com atenção à continuidade dos reflectores e à resolução.  
+- Usar **seismic attributes** (RMS amplitude, coherence, semblance) para revelar feições sutis (pinch-outs, canais, fraturas).
+
+5) CALIBRAÇÃO POÇO–SÍSMICA (Well Tie)
+- Gerar **synthetic seismogram**: requer curva de velocidade (sonic), densidade (RHOB) e um filtro (wavelet).  
+- Calcular tempo de viagem (TWT) para cada poço e ajustar horizontes sísmicos aos markers de poço.  
+- Verificar mismatch: pode indicar problema de datum, erro de velocidade ou processamento sísmico.
+
+6) CRIAÇÃO DE HORIZONS E SUPERFÍCIES
+- Após picking, gerar surfaces e interpolar entre linhas de pick.  
+- Corrigir e suavizar com cuidado: não remover variações geológicas reais.  
+- Construir fault polygons e atualizar a topologia entre horizons e faults.
+
+7) MODELAGEM ESTRUTURAL E GRID
+- Definir framework estrutural: horizons + faults → construir uma malha 3D (grid).  
+- Escolher **resolução do grid** compatível com objetivo (ex.: estudo regional vs. modelo de poço).  
+- Usar *corner point grid* ou *regular grid* conforme necessidade de qualidade e compatibilidade com simulador.
+
+8) MODELAGEM DE PROPRIEDADES
+- **Up-scaling / Down-scaling:** aplicar quando a escala do grid é diferente da escala de dados (logs vs. grid).  
+- **Estatística e variogramas:** calcular experimentalmente a continuidade espacial (variogram) para kriging/estocástico.  
+- **Kriging / Sequential Gaussian Simulation / Truncated Plurigaussian:** métodos para distribuir propriedades (porosidade, PERM, saturação) no grid.  
+- **Modelagem de facies:** usar algoritmos geostáticos e condicioná-los a poços e atributos sísmicos (população de facies por classes).
+
+9) VELOCIDADE E CONVERSÃO PROFUNDIDADE
+- Construir um modelo de velocidade (interval velocity / RMS) para converter tempos sísmicos (TWT) em profundidade.  
+- Ajustar via well-ties: inconsistências exigem revisão do modelo de velocidade ou do datum.
+
+10) ATRIBUTOS SÍSMICOS E INTEGRAÇÃO
+- Extrair atributos pré- e pós-stack: amplitude, semblance, coherence, envelope, RMS, instantaneous frequency.  
+- Usar atributos como *soft data* para condicionar modelos de propriedades e identificação de feições reservoir.
+
+11) SAÍDA PARA SIMULAÇÃO (WORKFLOW PARA RESERVOIR ENGINEERING)
+- Gerar *property grids* (porosidade, permeabilidade, saturação) e exportar nos formatos aceitos pelo simulador (Eclipse, CMG).  
+- Exportar também *rock* e *fluid* tables, regiões e zonas de grid.  
+- Validar consistência (sumário de volumes, comparação com estimativas por poço).
+
+12) QUALIDADE E VALIDAÇÃO
+- Fazer verificações: volume balance, comparação de porosidade média por zona com dados de poço, plots cross-plot (porosidade vs. resistividade).  
+- Sensibilidade a parâmetros chave: testar variações de variogram e upscaling.
+
+13) DICAS PRÁTICAS E PROBLEMAS COMUNS
+- Sempre **backup** antes de grandes operações (modelagem, simulations).  
+- Verifique **metadata** dos arquivos SEG-Y e LAS (headers).  
+- Erros de coordenadas são causa comum de falhas na integração — confirme datum e units.  
+- Over-smoothing: não eliminar heterogeneidades geologicamente relevantes.  
+- Quando synthetic seismogram não casa bem, revise wavelet e modelo de velocidade.
+
+14) SUGESTÃO DE FLUXO DE TRABALHO (resumido)
+1. Criar projeto → definir coordenadas → importar SEG-Y / LAS / shapefiles.  
+2. QC dos dados → ajustar headers e unidades.  
+3. Interpretar sísmica → pick horizons e faults.  
+4. Calibrar com poços via synthetic seismogram → well tie.  
+5. Construir framework estrutural → gerar grid.  
+6. Modelar propriedades condicionadas a poços e atributos sísmicos.  
+7. Converter para profundidade (se necessário) → validar volumes.  
+8. Exportar para simulador → análise de produção e forecast.
+
+15) REFERÊNCIAS PRÁTICAS (USAR NO ESTUDO)
+- Ler a documentação oficial da Schlumberger para comandos avançados e scripts Petrel.  
+- Praticar com datasets públicos (ex.: SEGY samples) para ganhar familiaridade com importação e QC.
+
+Resumo final: dominar o Petrel significa dominar a integração entre sísmica, poço e geologia — transformar dados brutos em um modelo geocientífico coerente e condizente com as evidências de poço. A curva de aprendizado é grande, mas o ganho na tomada de decisão é essencial para exploração e produção.`
+    },
+    {
+      title: 'Resumo Final',
+      text: 'O estudo de Jazidas II reúne técnicas de diagrafia, sísmica e modelagem digital para compreender o comportamento dos reservatórios. O domínio dessas ferramentas, especialmente do Petrel, é fundamental para profissionais que atuam em exploração e produção de petróleo e gás.'
+    }
+  ]
+};
+course.summaries['12']['Projecto Tecnológico'] = {
+  description: 'Disciplina voltada ao desenvolvimento de competências em pesquisa científica e elaboração de trabalhos técnicos, com foco na aplicação prática dos conhecimentos adquiridos ao longo do curso e na utilização de normas acadêmicas padronizadas.',
+  topics: [
+    {
+      title: 'Objetivos da Disciplina',
+      text: 'Ensinar as etapas de elaboração de um projeto de pesquisa, desenvolver a capacidade investigativa e de resolução de problemas, promover o uso da metodologia científica e preparar o aluno para o TCC e a vida profissional.'
+    },
+    {
+      title: 'Estrutura de um Trabalho Científico',
+      text: `
+Um trabalho científico é composto por três grandes partes:
+
+**A. Elementos Pré-Textuais**
+- **Capa:** nome da instituição, título, autor, curso, cidade e ano.  
+- **Folha de Rosto:** título, subtítulo, natureza do trabalho, instituição e orientador.  
+- **Dedicatória, Agradecimentos, Resumo, Abstract e Sumário.**
+
+**B. Elementos Textuais**
+- **Introdução:** tema, problema, objetivos e justificativa.  
+- **Desenvolvimento:** parte central, com fundamentação teórica e metodologia.  
+- **Conclusão:** síntese dos resultados e recomendações.
+
+**C. Elementos Pós-Textuais**
+- **Referências:** segundo a norma ABNT NBR 6023.  
+- **Apêndices:** materiais do autor.  
+- **Anexos:** documentos externos que complementam o trabalho.
+`
+    },
+    {
+      title: 'Etapas do Desenvolvimento do Projeto',
+      text: `
+1. Escolha do tema (relevante e viável).  
+2. Formulação do problema (questão central).  
+3. Definição dos objetivos (geral e específicos).  
+4. Justificativa (importância do estudo).  
+5. Referencial teórico (autores e conceitos-base).  
+6. Metodologia (métodos e técnicas de pesquisa).  
+7. Cronograma de execução.  
+8. Resultados e discussão.  
+9. Conclusão e recomendações.`
+    },
+    {
+      title: 'Metodologia Científica',
+      text: `
+A metodologia é o conjunto de técnicas que orientam o processo de pesquisa.  
+**Principais métodos:**
+- **Indutivo:** parte de casos específicos para conclusões gerais.  
+- **Dedutivo:** parte de princípios gerais para casos específicos.  
+- **Experimental:** testa hipóteses através de experimentos.  
+- **Estatístico:** utiliza dados numéricos para análise e interpretação.  
+Sempre citar as fontes consultadas e evitar plágio.`
+    },
+    {
+      title: 'Normas de Formatação (ABNT)',
+      text: `
+- **Fonte:** Arial ou Times New Roman, tamanho 12.  
+- **Espaçamento:** 1,5 entre linhas.  
+- **Margens:** esquerda/superior 3 cm, direita/inferior 2 cm.  
+- **Numeração:** apenas nas partes textuais.  
+- **Citações:**  
+  - Direta curta: “entre aspas”.  
+  - Direta longa: recuo de 4 cm, fonte 10, sem aspas.  
+  - Indireta: paráfrase com citação da fonte.`
+    },
+    {
+      title: 'Dicas Práticas',
+      text: `
+- Comece pela estrutura básica antes do texto.  
+- Use Word, Google Docs ou Overleaf (LaTeX).  
+- Revise com o orientador periodicamente.  
+- Use linguagem formal e objetiva.  
+- Prefira verbos no presente e evite opiniões pessoais.  
+- Organize as referências conforme escreve.`
+    },
+    {
+      title: 'Tutorial Simplificado de Criação',
+      text: `
+1. Crie capa e folha de rosto.  
+2. Escreva a introdução.  
+3. Desenvolva a fundamentação teórica (3–5 autores).  
+4. Descreva a metodologia.  
+5. Apresente resultados em tabelas e gráficos.  
+6. Faça a conclusão.  
+7. Formate segundo ABNT.  
+8. Gere o sumário automático (Word → Referências → Sumário).`
+    },
+    {
+      title: 'Erros Comuns a Evitar',
+      text: `
+- Falta de coesão entre objetivos e resultados.  
+- Plágio.  
+- Linguagem informal ou opinativa.  
+- Excesso de citações diretas.  
+- Formatação inconsistente.`
+    },
+    {
+      title: 'Resumo Final',
+      text: `
+O Projecto Tecnológico é a base da formação científica e profissional.  
+Ele ensina o estudante a **pesquisar, organizar, redigir e apresentar ideias com clareza e método**, competências essenciais em qualquer área tecnológica.`
+    }
+  ]
+};
+course.summaries['12']['HSMA'] = {
+  description: 'Disciplina que aborda os princípios de Higiene, Segurança e Meio Ambiente aplicados às atividades industriais e de campo, com foco na prevenção de acidentes, proteção ambiental e promoção da saúde ocupacional. O objetivo é capacitar o estudante a identificar, avaliar e controlar riscos no ambiente de trabalho.',
+  topics: [
+    {
+      title: 'Significado de HSMA',
+      text: '**HSMA** significa **Higiene, Segurança e Meio Ambiente**. É uma área essencial em qualquer atividade industrial, especialmente no setor petrolífero, pois busca garantir a integridade física dos trabalhadores, a preservação do meio ambiente e a continuidade operacional das empresas.\n\nA aplicação de HSMA envolve o cumprimento de normas nacionais e internacionais, além da promoção de uma cultura preventiva e sustentável dentro das organizações.'
+    },
+    {
+      title: 'Higiene Ocupacional',
+      text: 'A **Higiene Ocupacional** tem como objetivo **identificar, avaliar e controlar agentes de risco** que possam afetar a saúde dos trabalhadores. Atua de forma preventiva, monitorando as condições ambientais do local de trabalho.\n\n**Etapas principais:**\n1. **Reconhecimento dos riscos:** identificação de agentes físicos, químicos e biológicos.\n2. **Avaliação:** medição e comparação com limites de tolerância estabelecidos por normas (como NR-15 e NR-9).\n3. **Controle:** implementação de medidas de engenharia, administrativas e uso de EPIs.\n\n**Exemplo:** controle de ruído em áreas de perfuração através de isolamento acústico e protetores auriculares.'
+    },
+    {
+      title: 'Segurança do Trabalho',
+      text: 'A **Segurança do Trabalho** visa prevenir acidentes e proteger a integridade física e mental do trabalhador. Envolve o uso de técnicas, normas e procedimentos voltados à redução de riscos.\n\n**Princípios básicos:**\n- **Identificação de perigos** e avaliação de riscos.\n- **Implantação de medidas de controle** (barreiras físicas, treinamentos, sinalizações, EPIs).\n- **Análise de acidentes** para evitar reincidências.\n\n**Normas relevantes:** NR-1 (disposições gerais), NR-6 (EPIs), NR-9 (PPRA) e NR-20 (líquidos inflamáveis e combustíveis).'
+    },
+    {
+      title: 'Meio Ambiente Industrial',
+      text: 'O componente **Meio Ambiente** trata da **prevenção e mitigação dos impactos ambientais** causados por atividades industriais. Busca o equilíbrio entre produção e sustentabilidade.\n\n**Práticas importantes:**\n- Gestão de resíduos sólidos e líquidos.\n- Controle de emissões atmosféricas.\n- Tratamento de efluentes e monitoramento da qualidade da água.\n- Programas de recuperação de áreas degradadas.\n\nEmpresas certificadas pela **ISO 14001** demonstram compromisso com a gestão ambiental eficiente.'
+    },
+    {
+      title: 'Agentes de Risco Ocupacional',
+      text: 'Os **agentes de risco** são fatores presentes no ambiente de trabalho que podem causar danos à saúde. Classificam-se em:\n\n- **Físicos:** ruído, vibração, calor, frio, radiações, pressão anormal, iluminação inadequada.\n- **Químicos:** poeiras, gases, vapores, fumos, névoas e substâncias tóxicas.\n- **Biológicos:** vírus, bactérias, fungos, parasitas.\n- **Ergonômicos:** esforços repetitivos, posturas inadequadas, monotonia, ritmo excessivo.\n- **Acidentais (mecânicos):** máquinas desprotegidas, quedas, choques elétricos, incêndios.\n\nA análise desses agentes permite elaborar o **Mapa de Riscos**, ferramenta visual que mostra os perigos em cada setor da empresa.'
+    },
+    {
+      title: 'Avaliação e Controle de Riscos',
+      text: 'A **avaliação de riscos** consiste em identificar os perigos e medir a probabilidade e gravidade dos seus efeitos. Baseia-se em metodologias como:\n\n- **APR (Análise Preliminar de Riscos):** identifica riscos antes da execução de uma atividade.\n- **HAZOP (Hazard and Operability Study):** analisa sistemas complexos de processo.\n- **Matriz de Risco:** cruza probabilidade e severidade para definir prioridades de ação.\n\n**Medidas de controle:**\n1. **Eliminação/Substituição do risco.**\n2. **Controles de engenharia (barreiras físicas, ventilação).**\n3. **Controles administrativos (treinamentos, rodízios).**\n4. **Uso de EPIs.**\n\nEssas medidas seguem a hierarquia de controle recomendada pela **Organização Internacional do Trabalho (OIT)**.'
+    },
+    {
+      title: 'Gestão Integrada de HSMA',
+      text: 'A **Gestão Integrada de HSMA** busca unificar as políticas de **Segurança, Saúde e Meio Ambiente** dentro de um mesmo sistema, garantindo eficiência e conformidade legal.\n\nEmpresas utilizam sistemas baseados em normas como:\n- **ISO 14001** (Gestão Ambiental)\n- **ISO 45001** (Segurança e Saúde Ocupacional)\n\nO resultado é um ambiente de trabalho mais seguro, produtivo e sustentável, com redução de acidentes e melhor imagem institucional.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A disciplina de **HSMA** é essencial para a formação de profissionais conscientes e responsáveis. Ensina como prevenir acidentes, preservar o meio ambiente e promover a saúde ocupacional. O domínio dessas práticas é indispensável em setores industriais, especialmente na área de petróleo e gás, onde o risco operacional é elevado.'
+    }
+  ]
+};
+course.summaries['12']['Matemática'] = {
+  description: 'Disciplina que desenvolve o raciocínio lógico e a capacidade de resolver problemas aplicados à engenharia, com foco em inequações, funções racionais, fracionárias e exponenciais. A Matemática serve de base para disciplinas como Física, Instrumentação e Jazidas.',
+  topics: [
+    {
+      title: 'Inequações',
+      text: 'As **inequações** são expressões matemáticas que envolvem desigualdades (>, <, ≥, ≤). Elas permitem determinar intervalos de valores que satisfazem determinadas condições.\n\n**Tipos principais:**\n- Inequações do 1º grau: ax + b > 0 → x > -b/a.\n- Inequações do 2º grau: ax² + bx + c > 0 → resolvidas a partir das raízes da equação associada.\n- Inequações racionais: exigem o estudo do sinal do numerador e denominador.\n\n**Etapas gerais:**\n1. Simplificar a expressão.\n2. Determinar os valores que anulam numerador e denominador.\n3. Montar a tabela de sinais.\n4. Indicar o conjunto solução conforme o sinal exigido.'
+    },
+    {
+      title: 'Funções Racionais e Fracionárias',
+      text: '**Funções racionais** são expressões do tipo f(x) = P(x)/Q(x), onde P e Q são polinômios e Q(x) ≠ 0.\n\n**Propriedades:**\n- O **domínio** exclui os valores que anulam o denominador.\n- Os **zeros** são obtidos resolvendo P(x) = 0.\n- As **assíntotas verticais** ocorrem quando Q(x) = 0.\n- As **assíntotas horizontais** ou oblíquas dependem dos graus dos polinômios.\n\n**Funções fracionárias** são um caso particular, em que o numerador e/ou denominador têm raízes que influenciam diretamente o comportamento da curva.'
+    },
+    {
+      title: 'Funções Exponenciais',
+      text: 'Uma **função exponencial** tem a forma f(x) = aˣ, com a > 0 e a ≠ 1. É usada para representar crescimento ou decaimento.\n\n**Propriedades principais:**\n- f(x) > 0 para todo x real.\n- f(0) = 1.\n- Crescente se a > 1, decrescente se 0 < a < 1.\n- A imagem é (0, +∞).\n\n**Aplicações:** cálculos de juros compostos, crescimento populacional, decaimento radioativo e modelos de pressão e temperatura em reservatórios.'
+    },
+    {
+      title: 'Equações Logarítmicas e Exponenciais',
+      text: 'As **equações logarítmicas** e **exponenciais** estão interligadas, pois logₐb é o inverso de aˣ = b.\n\n**Exemplo:**\n- Exponencial: 2ˣ = 8 → x = 3.\n- Logarítmica: log₂8 = x → x = 3.\n\n**Propriedades úteis:**\n- logₐ(xy) = logₐx + logₐy.\n- logₐ(x/y) = logₐx - logₐy.\n- logₐxⁿ = n·logₐx.\n\nEssas propriedades são fundamentais para simplificar cálculos e resolver equações não lineares.'
+    },
+    {
+      title: 'Aplicações em Engenharia',
+      text: 'A Matemática é usada para descrever fenômenos físicos e técnicos:\n- Cálculo de pressão e volume em reservatórios (funções racionais).\n- Crescimento de produção e declínio (funções exponenciais).\n- Dimensionamento de válvulas, bombas e vazões.\n\nO domínio desses conceitos é essencial para análises quantitativas e otimização de processos na área de petróleo e gás.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A disciplina de Matemática fornece a base lógica e quantitativa para todas as ciências aplicadas. O domínio das inequações e funções é indispensável para modelar e resolver problemas reais na engenharia de petróleo, automação e instrumentação.'
+    }
+  ]
+};
+course.summaries['12']['Química Orgânica'] = {
+  description: 'Disciplina que estuda os compostos de carbono e suas propriedades, estrutura e reações. É essencial para compreender a composição do petróleo, os hidrocarbonetos e os processos químicos de refino e transformação de matéria orgânica.',
+  topics: [
+    {
+      title: 'Introdução à Química Orgânica',
+      text: 'A Química Orgânica é o ramo da química que estuda os compostos formados principalmente por **carbono (C)**, geralmente combinados com **hidrogênio (H)**, **oxigênio (O)**, **nitrogênio (N)**, **enxofre (S)** e **halogênios**. Esses compostos formam a base do petróleo e de quase todos os materiais orgânicos utilizados na indústria.'
+    },
+    {
+      title: 'Carbono e Cadeias Carbônicas',
+      text: 'O **carbono** é um elemento tetravalente, ou seja, pode formar **quatro ligações covalentes**. Essa característica permite a formação de **cadeias carbônicas**, que podem ser:\n\n- **Abertas (acíclicas)** ou **fechadas (cíclicas)**;\n- **Normais (lineares)** ou **ramificadas**;\n- **Saturadas** (apenas ligações simples) ou **insaturadas** (duplas ou triplas);\n- **Aromáticas**, quando possuem o anel benzênico.\n\nEssas cadeias formam a base estrutural de todos os compostos orgânicos.'
+    },
+    {
+      title: 'Classificação do Carbono na Cadeia',
+      text: 'Os átomos de carbono em uma cadeia são classificados de acordo com o número de outros carbonos a que estão ligados:\n- **Primário (1°):** ligado a um único carbono.\n- **Secundário (2°):** ligado a dois carbonos.\n- **Terciário (3°):** ligado a três carbonos.\n- **Quaternário (4°):** ligado a quatro carbonos.\n\nEssa classificação ajuda a entender o comportamento químico e as propriedades dos compostos.'
+    },
+    {
+      title: 'Radicais Orgânicos',
+      text: 'Os **radicais** são fragmentos de moléculas que possuem um elétron desemparelhado, o que os torna altamente reativos. Na nomenclatura, derivam de hidrocarbonetos pela perda de um átomo de hidrogênio.\n\n**Exemplos:**\n- CH₃– (metil)\n- C₂H₅– (etil)\n- C₃H₇– (propil)\n\nEsses radicais participam da formação de compostos mais complexos, como álcoois, ácidos e ésteres.'
+    },
+    {
+      title: 'Nomenclatura dos Compostos Orgânicos',
+      text: 'A nomenclatura segue as regras da **IUPAC** (União Internacional de Química Pura e Aplicada). É formada por:\n\n1. **Prefixo:** número de carbonos na cadeia principal.\n2. **Infixo:** tipo de ligação (an, en, in).\n3. **Sufixo:** grupo funcional presente.\n\n**Exemplo:** CH₄ → metano | C₂H₄ → eteno | C₂H₂ → etino.'
+    },
+    {
+      title: 'Grupos Funcionais',
+      text: 'Os **grupos funcionais** determinam as propriedades químicas dos compostos orgânicos. Alguns dos principais são:\n\n- **Hidrocarbonetos:** apenas C e H.\n- **Álcoois:** –OH.\n- **Aldeídos:** –CHO.\n- **Cetonas:** –CO–.\n- **Ácidos carboxílicos:** –COOH.\n- **Ésteres:** –COO–.\n- **Aminas:** –NH₂.\n- **Amidas:** –CONH₂.\n\nCada grupo confere reatividade e aplicações específicas.'
+    },
+    {
+      title: 'Hidrocarbonetos',
+      text: 'Os **hidrocarbonetos** são compostos formados apenas por carbono e hidrogênio, sendo os principais constituintes do petróleo e gás natural.\n\n**Tipos:**\n- **Alcanos (CnH2n+2):** ligações simples, saturados. Ex.: metano (CH₄).\n- **Alcenos (CnH2n):** uma dupla ligação. Ex.: eteno (C₂H₄).\n- **Alcinos (CnH2n−2):** uma tripla ligação. Ex.: etino (C₂H₂).\n- **Aromáticos:** possuem anel benzênico (C₆H₆).\n\nEsses compostos são fundamentais na indústria petroquímica e nos processos de refino.'
+    },
+    {
+      title: 'Radicais e Cadeias Homólogas',
+      text: 'As **séries homólogas** são grupos de compostos com propriedades químicas semelhantes e que diferem entre si por um grupo –CH₂–.\n\n**Exemplo:** metano (CH₄), etano (C₂H₆), propano (C₃H₈), butano (C₄H₁₀).\n\nIsso mostra a regularidade e previsibilidade das propriedades dos compostos orgânicos.'
+    },
+    {
+      title: 'Aplicações no Setor de Petróleo',
+      text: 'A Química Orgânica é aplicada em quase todos os processos da indústria petrolífera:\n- Identificação de hidrocarbonetos durante o refino;\n- Produção de combustíveis e solventes;\n- Síntese de polímeros, plásticos e lubrificantes;\n- Estudo das reações de craqueamento e reforma catalítica.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A Química Orgânica estuda o comportamento do carbono e suas combinações, baseando-se em estruturas, reatividade e funções químicas. No contexto do petróleo, é essencial para compreender os processos de refino, caracterização de produtos e síntese de derivados industriais.'
+    }
+  ]
+};
+course.summaries['12']['Instrumentação'] = {
+  description: 'Disciplina que estuda os instrumentos e sistemas utilizados para medir, registrar e controlar variáveis de um processo industrial, como pressão, temperatura, vazão e nível. É fundamental para garantir segurança, eficiência e qualidade nas operações de exploração e refino de petróleo.',
+  topics: [
+    {
+      title: 'Introdução à Instrumentação',
+      text: 'Instrumentação é o conjunto de técnicas e dispositivos usados para **medir e controlar variáveis físicas e químicas** em processos industriais. Sem ela, não seria possível operar refinarias, plataformas e usinas com precisão e segurança.'
+    },
+    {
+      title: 'Variáveis de Processo',
+      text: 'As principais **variáveis de processo** são:\n- **Pressão (P)** – força exercida por um fluido.\n- **Temperatura (T)** – grau de energia térmica.\n- **Vazão (Q)** – quantidade de fluido que passa por um ponto em certo tempo.\n- **Nível (L)** – altura do fluido em um reservatório.\n- **Densidade e pH** também são monitoradas em certos sistemas.'
+    },
+    {
+      title: 'Elementos de Medição e Controle',
+      text: 'Um sistema de instrumentação é formado por três elementos principais:\n1. **Sensor (ou elemento primário)** – detecta a variável (ex: termopar, manômetro).\n2. **Transmissor** – converte o sinal do sensor em um formato padronizado (ex: 4–20 mA, digital).\n3. **Controlador e Atuador** – compara o valor medido com o desejado e ajusta o processo (ex: válvula de controle).'
+    },
+    {
+      title: 'Tipos de Instrumentos de Medição',
+      text: '• **Pressão:** manômetros, transmissores de pressão, piezômetros.\n• **Temperatura:** termopares, termorresistências (RTDs), termômetros de mercúrio.\n• **Vazão:** rotâmetros, placas de orifício, medidores eletromagnéticos, ultrassônicos.\n• **Nível:** boias, sensores de ultrassom, transmissores de pressão diferencial.'
+    },
+    {
+      title: 'Transmissão de Sinais',
+      text: 'Os sinais de instrumentos podem ser:\n- **Pneumáticos (3–15 psi)** – usados em ambientes perigosos.\n- **Elétricos (4–20 mA)** – padrão na maioria das indústrias.\n- **Digitais (HART, Fieldbus, Profibus)** – transmitem medições e diagnósticos em rede, permitindo automação avançada.'
+    },
+    {
+      title: 'Controle de Processos',
+      text: 'O **controle de processo** é o uso de instrumentos para manter variáveis dentro de limites seguros e produtivos. O sistema compara o valor real (medido) com o valor desejado (set point) e faz correções automaticamente.\n\n**Tipos:**\n- Controle On-Off (liga/desliga)\n- Controle Proporcional (P)\n- Controle Proporcional-Integral (PI)\n- Controle Proporcional-Integral-Derivativo (PID)'
+    },
+    {
+      title: 'Diagrama P&ID',
+      text: 'O **P&ID (Piping and Instrumentation Diagram)** representa graficamente todos os instrumentos, tubulações e equipamentos de um sistema industrial. Cada instrumento é identificado por símbolos e códigos padronizados segundo a norma **ISA S5.1**.'
+    },
+    {
+      title: 'Calibração de Instrumentos',
+      text: 'A **calibração** garante que os instrumentos indiquem valores corretos dentro da faixa especificada. É feita comparando o instrumento com um padrão de referência e ajustando se necessário. Um instrumento calibrado aumenta a confiabilidade e reduz riscos operacionais.'
+    },
+    {
+      title: 'Segurança e Manutenção em Instrumentação',
+      text: 'A instrumentação também garante **segurança operacional**. Falhas em sensores ou válvulas podem causar vazamentos, explosões ou perdas de produto. Por isso, há planos de manutenção preventiva, inspeções e testes periódicos dos instrumentos críticos.'
+    },
+    {
+      title: 'Aplicações na Indústria Petrolífera',
+      text: '• Medição de **pressão e temperatura** em poços e tubulações.\n• Controle de **nível de tanques** e separadores.\n• Monitoramento de **vazão de petróleo, gás e água.**\n• Supervisão remota em plataformas através de sistemas **SCADA e DCS.**\n\nEsses sistemas garantem eficiência e segurança em todas as etapas do processo.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'Instrumentação é a base da automação industrial. Ela permite medir, transmitir e controlar variáveis essenciais em processos de petróleo, assegurando qualidade, produtividade e segurança nas operações.'
+    }
+  ]
+};
+course.summaries['12']['Física'] = {
+  description: 'Disciplina que estuda o movimento e as forças que o produzem. Aborda a cinemática (descrição do movimento) e a dinâmica (causas do movimento), com destaque para leis, fórmulas e aplicações práticas.',
+  topics: [
+    {
+      title: 'Introdução ao Movimento e à Força',
+      text: 'Movimento é a mudança de posição de um corpo em relação a um referencial ao longo do tempo. A força é a causa capaz de alterar o estado de movimento ou repouso de um corpo. A física analisa ambos por meio da **cinemática** (como o corpo se move) e da **dinâmica** (por que ele se move).'
+    },
+    {
+      title: 'Cinemática — Descrição do Movimento',
+      text: 'Estuda o movimento sem se preocupar com suas causas.\n\nGrandezas fundamentais:\n- **Posição (x)**: local onde o corpo se encontra.\n- **Deslocamento (Δx)**: diferença entre posição final e inicial.\n- **Velocidade média (vₘ)**: vₘ = Δx / Δt.\n- **Velocidade instantânea (v)**: v = dx/dt (derivada da posição em relação ao tempo).\n- **Aceleração (a)**: a = dv/dt = d²x/dt².\n\nO sinal da velocidade e da aceleração indica o sentido do movimento (progressivo ou retrógrado).'
+    },
+    {
+      title: 'Equações Paramétricas do Movimento',
+      text: 'Usadas para descrever o movimento em função do tempo:\n\n1. **Função horária da posição:**\n   - x(t) = x₀ + v·t  → (Movimento retilíneo uniforme — MRU)\n2. **Função horária da velocidade:**\n   - v(t) = v₀ + a·t  → (Movimento uniformemente variado — MUV)\n3. **Função horária da posição no MUV:**\n   - x(t) = x₀ + v₀·t + ½·a·t²\n4. **Equação de Torricelli:**\n   - v² = v₀² + 2·a·Δx\n\nEssas relações descrevem trajetórias e permitem prever posições futuras do corpo.'
+    },
+    {
+      title: 'Trajetória e Leis de Movimento',
+      text: 'A **trajetória** é o caminho descrito por uma partícula em movimento. Pode ser retilínea, curvilínea ou circular.\n\nA **lei de movimento (ou lei das posições)** é a função matemática que define a posição em função do tempo: x(t) = f(t). \n\nExemplo: x(t) = 2t² + 3t + 1 → movimento acelerado, pois há termo quadrático.'
+    },
+    {
+      title: 'Velocidade Média e Instantânea',
+      text: '• **Velocidade média (vₘ):** vₘ = (x₂ - x₁) / (t₂ - t₁)\n• **Velocidade instantânea:** v = lim(Δx/Δt) = dx/dt\n\nSe v for constante → MRU; se v variar → MUV. A inclinação da curva x(t) no gráfico representa a velocidade.'
+    },
+    {
+      title: 'Derivadas e Gráficos',
+      text: 'A derivada da posição fornece a velocidade, e a derivada da velocidade fornece a aceleração:\n\n- v(t) = dx/dt\n- a(t) = dv/dt = d²x/dt²\n\nOs gráficos de x×t, v×t e a×t permitem identificar o tipo de movimento:\n- x×t linear → MRU\n- x×t parabólico → MUV\n- v×t constante → aceleração nula\n- v×t linear → aceleração constante.'
+    },
+    {
+      title: 'Distância Percorrida e Deslocamento',
+      text: '• **Distância:** comprimento total percorrido (sempre positiva). \n• **Deslocamento:** diferença entre posição final e inicial (pode ser positiva, negativa ou nula).\n\nFórmula geral: ΔS = |x_f - x_i|. Em movimentos curvilíneos, calcula-se o comprimento da trajetória.'
+    },
+    {
+      title: 'Dinâmica — Causas do Movimento',
+      text: 'A dinâmica relaciona as forças que agem sobre os corpos ao movimento resultante. Baseia-se nas **Leis de Newton**:\n\n1. **1ª Lei (Inércia):** um corpo mantém seu estado de repouso ou MRU se a força resultante for nula.\n2. **2ª Lei:** Fₐ = m·a (a força resultante é igual ao produto da massa pela aceleração).\n3. **3ª Lei (Ação e Reação):** toda ação tem uma reação de mesma intensidade e direção, mas sentido oposto.'
+    },
+    {
+      title: 'Força, Massa e Peso',
+      text: '• **Força (F):** vetor que causa aceleração. Unidade: Newton (N).\n• **Massa (m):** medida da inércia de um corpo (kg).\n• **Peso (P):** força da gravidade: P = m·g (g = 9,8 m/s²).'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A Física do movimento e da força explica o comportamento de partículas e corpos em ação. Através de funções horárias, derivadas e leis de Newton, é possível descrever, prever e analisar o deslocamento, a velocidade e as causas do movimento em sistemas físicos e industriais.'
+    }
+  ]
+};
+course.summaries['12']['OGI'] = {
+  description: 'Disciplina que aborda a estrutura e funcionamento das empresas, seus objetivos, tipos e formas de organização, além da classificação D.E.F.L. usada na indústria petrolífera e tecnológica.',
+  topics: [
+    {
+      title: 'Conceito de Empresa',
+      text: 'Empresa é uma organização econômica e social que combina recursos humanos, materiais e financeiros para produzir bens ou serviços e atender às necessidades do mercado, buscando lucro e sustentabilidade.'
+    },
+    {
+      title: 'Objetivos das Empresas',
+      text: 'Os principais objetivos são:\n- Produzir bens e serviços de forma eficiente.\n- Atender à demanda do mercado.\n- Obter lucro e crescimento.\n- Garantir sustentabilidade e inovação.\n- Promover o bem-estar dos colaboradores e da comunidade.'
+    },
+    {
+      title: 'Tipos de Empresas',
+      text: 'As empresas podem ser classificadas quanto à:\n\n**1. Propriedade:**\n- Públicas (Estado).\n- Privadas (particulares).\n- Mistas (capital público e privado).\n\n**2. Porte:** micro, pequena, média e grande empresa.\n\n**3. Atividade:**\n- Primária (extração — ex.: petróleo, mineração).\n- Secundária (transformação — ex.: refinarias, indústrias químicas).\n- Terciária (serviços — ex.: logística, consultoria).'
+    },
+    {
+      title: 'Finalidade das Empresas',
+      text: 'A finalidade é gerar riqueza, empregos e desenvolvimento. No contexto industrial, as empresas também visam **eficiência produtiva**, **controle de custos** e **inovação tecnológica** para se manterem competitivas no mercado.'
+    },
+    {
+      title: 'Características de uma Empresa',
+      text: '• Organização sistemática de recursos.\n• Hierarquia e divisão de tarefas.\n• Planejamento e controle de processos.\n• Tomada de decisão baseada em dados.\n• Capacidade de adaptação a mudanças.'
+    },
+    {
+      title: 'Planeamento Empresarial',
+      text: 'Planeamento é o processo de definir metas, estratégias e ações para atingir os objetivos da empresa.\n\nEtapas:\n1. Análise interna e externa (diagnóstico).\n2. Definição de metas e prazos.\n3. Elaboração de estratégias.\n4. Execução e acompanhamento.\n5. Avaliação e correção de rumos.'
+    },
+    {
+      title: 'Tipos de Planeamento',
+      text: '• **Planeamento Estratégico:** de longo prazo; define a direção geral da empresa (ex.: expansão, inovação).\n• **Planeamento Tático:** de médio prazo; transforma estratégias em planos operacionais para setores específicos.\n• **Planeamento Operacional:** de curto prazo; trata das tarefas diárias e rotineiras.\n\nTodos os níveis de planeamento devem estar alinhados aos objetivos organizacionais.'
+    },
+    {
+      title: 'Classificação D.E.F.L.',
+      text: 'A sigla **D.E.F.L.** representa:\n- **D – Departamentos:** setores responsáveis por funções específicas (produção, finanças, marketing, RH, manutenção).\n- **E – Estruturas:** modo como a empresa é organizada (funcional, matricial, por projeto, hierárquica).\n- **F – Funções:** conjunto de atividades desempenhadas (planejar, dirigir, controlar, executar).\n- **L – Linhas:** fluxos de comunicação e hierarquia (quem reporta a quem, linhas de autoridade e responsabilidade).\n\nA análise D.E.F.L. ajuda a entender o funcionamento da empresa, definir responsabilidades e otimizar a gestão.'
+    },
+    {
+      title: 'Resumo Final',
+      text: 'A disciplina de OGI ensina como as empresas são estruturadas, geridas e planejadas. Compreender os tipos, objetivos e o modelo D.E.F.L. permite ao profissional organizar recursos, melhorar processos e aumentar a eficiência organizacional.'
+    }
+  ]
+};
+
+    // initialize 11 & 12 summaries as placeholders
+    ['11','12'].forEach(level => {
+      course.levels[level].forEach(d => {
+        if (!course.summaries[level]) course.summaries[level] = {};
+        if (!course.summaries[level][d]) {
+             course.summaries[level][d] = { description: `Resumo de ${d} (${level}º) — a completar.`, topics: [] };
+        }
+      });
+    });
+
+    // === UI refs ===
+    const levelTitle = document.getElementById('levelTitle');
+    const disciplinesEl = document.getElementById('disciplines');
+    const disciplineTitle = document.getElementById('disciplineTitle');
+    const topicsArea = document.getElementById('topicsArea');
+    const searchInput = document.getElementById('search');
+    const searchResults = document.getElementById('searchResults'); // Container (for opacity)
+    const searchBox = document.getElementById('searchBox'); // Modal content
+    const clearSearchBtn = document.getElementById('clearSearch');
+    const searchContent = document.getElementById('searchContent');
+    const openLevelBtns = document.querySelectorAll('.open-level');
+
+    let currentLevel = null;
+    let currentDiscipline = null;
+
+    // Open level buttons
+    openLevelBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Visual feedback for level buttons
+        openLevelBtns.forEach(b => b.classList.remove('bg-primary-dark', 'shadow-inner'));
+        btn.classList.add('bg-primary-dark', 'shadow-inner');
+        openLevel(btn.dataset.level);
+      });
+    });
+
+    function openLevel(level){
+      currentLevel = level;
+      levelTitle.textContent = `Nível: ${level}º`;
+      renderDisciplines(level);
+      // clear content
+      disciplineTitle.textContent = 'Escolha uma disciplina';
+      topicsArea.innerHTML = '';
+
+      // Set initial active state for the level button if not yet set
+      document.querySelector(`.open-level[data-level="${level}"]`)?.classList.add('bg-primary-dark', 'shadow-inner');
+    }
+
+    function renderDisciplines(level){
+      disciplinesEl.innerHTML = '';
+      course.levels[level].forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = 'px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-surface-light dark:bg-slate-700 text-slate-800 dark:text-slate-100 whitespace-nowrap hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors';
+        btn.textContent = d;
+        btn.dataset.discipline = d;
+        btn.addEventListener('click', () => openDiscipline(level, d));
+        disciplinesEl.appendChild(btn);
+      });
+    }
+
+    function openDiscipline(level, discipline){
+      currentDiscipline = discipline;
+      disciplineTitle.textContent = discipline;
+      topicsArea.innerHTML = '';
+
+      // Visual feedback for discipline buttons
+      document.querySelectorAll('#disciplines button').forEach(b => {
+        b.classList.remove('bg-primary', 'text-white', 'border-primary');
+        b.classList.add('bg-surface-light', 'text-slate-800', 'dark:bg-slate-700', 'dark:text-slate-100');
+      });
+      document.querySelector(`button[data-discipline="${discipline}"]`)?.classList.add('bg-primary', 'text-white', 'border-primary');
+      document.querySelector(`button[data-discipline="${discipline}"]`)?.classList.remove('bg-surface-light', 'text-slate-800', 'dark:bg-slate-700', 'dark:text-slate-100');
+
+
+      const data = course.summaries[level] && course.summaries[level][discipline];
+      const desc = data ? data.description : 'Resumo vazio.';
+
+      // description card
+      const descCard = document.createElement('div');
+      descCard.className = 'col-span-1 md:col-span-2 p-5 border rounded-xl bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600 shadow-inner';
+      descCard.innerHTML = `<h4 class="font-heading text-lg mb-2 text-primary">Resumo Geral</h4><p class="text-sm text-slate-700 dark:text-slate-300">${desc}</p>`;
+      topicsArea.appendChild(descCard);
+
+      // topics
+      if (data && data.topics && data.topics.length){
+        data.topics.forEach(t => {
+          const tCard = document.createElement('div');
+          tCard.className = 'p-5 border rounded-xl bg-surface-light dark:bg-surface-dark border-slate-200 dark:border-slate-700 shadow-md hover:shadow-lg transition-shadow duration-300';
+          tCard.innerHTML = `<h5 class="font-semibold text-base">${t.title}</h5><p class="text-sm text-slate-700 dark:text-slate-400 mt-2">${t.text}</p>`;
+          topicsArea.appendChild(tCard);
+        });
+      } else {
+        const empty = document.createElement('div');
+        empty.className = 'col-span-1 md:col-span-2 p-5 border rounded-xl bg-surface-light dark:bg-surface-dark text-slate-600 dark:text-slate-500 italic';
+        empty.textContent = 'Nenhum tema adicionado ainda. Podes começar a preencher os temas e resumos aqui.';
+        topicsArea.appendChild(empty);
+      }
+    }
+
+    // === Pesquisa ===
+    function searchAll(query){
+      const q = query.trim().toLowerCase();
+      if (!q) return [];
+      const results = [];
+      Object.keys(course.summaries).forEach(level => {
+        Object.keys(course.summaries[level]).forEach(d => {
+          const data = course.summaries[level][d];
+          // check discipline name & description
+          if (d.toLowerCase().includes(q) || (data.description && data.description.toLowerCase().includes(q))){
+            results.push({ level, discipline: d, type: 'disciplina', snippet: data.description.substring(0, 100) + '...' });
+          }
+          // check topics
+          (data.topics || []).forEach(t => {
+            if (t.title.toLowerCase().includes(q) || t.text.toLowerCase().includes(q)){
+              results.push({ level, discipline: d, type: 'tema', title: t.title, snippet: t.text.substring(0, 100) + '...' });
+            }
+          });
+        });
+      });
+      return results;
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      // Clear search results immediately if the input is empty
+      if (!e.target.value.trim() && searchBox.classList.contains('active')) {
+        closeSearchResults();
+      }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    clearSearchBtn.addEventListener('click', ()=>{ searchInput.value=''; closeSearchResults(); searchInput.focus(); });
+
+    function doSearch(){
+      const q = searchInput.value.trim();
+      if (!q) { closeSearchResults(); return; }
+      const res = searchAll(q);
+      renderSearchResults(res, q);
+    }
+
+    function renderSearchResults(results, q){
+      searchContent.innerHTML = '';
+      if (!results.length){
+        searchContent.innerHTML = `<p class="p-4 text-center text-slate-500">Nenhum resultado encontrado para "<strong>${q}</strong>".</p>`;
+      } else {
+        results.forEach(r => {
+          const node = document.createElement('div');
+          node.className = 'p-3 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer transition-colors';
+          if (r.type === 'disciplina'){
+            node.innerHTML = `
+              <strong class="text-primary-dark dark:text-primary-light">${r.discipline}</strong> 
+              <span class="text-xs text-slate-500 dark:text-slate-400">(Nível ${r.level} — Disciplina)</span>
+              <div class="text-sm text-slate-700 dark:text-slate-300 mt-1 italic">${r.snippet}</div>`;
+          } else {
+            node.innerHTML = `
+              <strong class="text-slate-900 dark:text-slate-100">${r.title}</strong> 
+              <span class="text-xs text-slate-500 dark:text-slate-400">— ${r.discipline} (Nível ${r.level} — Tema)</span>
+              <div class="text-sm text-slate-700 dark:text-slate-300 mt-1">${r.snippet}</div>`;
+          }
+          node.addEventListener('click', () => {
+            // open the relevant level and discipline and close modal
+            openLevel(r.level);
+            // Ensure the discipline button is visible after level change
+            setTimeout(() => { openDiscipline(r.level, r.discipline); }, 100); 
+            
+            closeSearchResults();
+          });
+          searchContent.appendChild(node);
+        });
+      }
+
+      // show modal with transitions
+      searchResults.classList.remove('pointer-events-none', 'opacity-0');
+      searchBox.classList.remove('hidden');
+      searchBox.classList.add('active'); // Custom class for state
+    }
+
+    document.getElementById('closeSearchResults').addEventListener('click', closeSearchResults);
+    
+    function closeSearchResults(){ 
+      searchResults.classList.add('pointer-events-none', 'opacity-0');
+      searchBox.classList.add('hidden');
+      searchBox.classList.remove('active');
+    }
+
+    // === Dark mode toggle (manual) ===
+    const themeToggle = document.getElementById('themeToggle');
+    function applyTheme(isDark){
+      if (isDark){
+        document.documentElement.classList.add('dark');
+        document.body.classList.remove('bg-surface-bg', 'text-slate-900');
+        document.body.classList.add('bg-surface-bg_dark','text-slate-100');
+        themeToggle.textContent = '☀️';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.body.classList.remove('bg-surface-bg_dark','text-slate-100');
+        document.body.classList.add('bg-surface-bg','text-slate-900');
+        themeToggle.textContent = '🌙';
+      }
+      localStorage.setItem('ppp_theme_dark', isDark ? '1' : '0');
+    }
+    themeToggle.addEventListener('click', ()=>{
+      const dark = localStorage.getItem('ppp_theme_dark') === '1';
+      applyTheme(!dark);
+    });
+    // load theme
+    (function(){
+      const saved = localStorage.getItem('ppp_theme_dark');
+      applyTheme(saved === '1');
+    })();
+
+    // Small enhancement: open 10º by default
+    openLevel('10');
+
+    // Accessibility: focus search on Ctrl+K
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+        e.preventDefault(); searchInput.focus();
+      }
+    });
+
+  </script></body>
+</html>
+
